@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Cart — The Analytics Lab</title>
+  <meta name="description" content="Review your cart and proceed to checkout." />
+  <link rel="stylesheet" href="style.css" />
+
+  <!--
+    ╔══════════════════════════════════════════════════════╗
+    ║  GTM HEAD SNIPPET — Paste yours below this comment  ║
+    ╚══════════════════════════════════════════════════════╝
+  -->
+  <!-- Google Tag Manager -->
+  <!-- (paste GTM <head> snippet here) -->
+  <!-- End Google Tag Manager -->
+
+</head>
+
+<!--
+  data-page="cart" — used by script.js to call initCartPage()
+  and by GTM as a Page Type variable.
+-->
+<body data-page="cart">
+
+  <!--
+    ╔══════════════════════════════════════════════════════╗
+    ║  GTM BODY NOSCRIPT — Paste yours below this comment ║
+    ╚══════════════════════════════════════════════════════╝
+  -->
+  <!-- Google Tag Manager (noscript) -->
+  <!-- (paste GTM noscript <noscript> snippet here) -->
+  <!-- End Google Tag Manager (noscript) -->
+
+
+  <!-- ================================================
+       NAVBAR
+       ================================================ -->
+  <nav class="navbar" id="main-nav" data-component="navbar">
+    <a href="index.html" class="navbar-brand" id="nav-logo" data-nav-item="logo">
+      🧪 The <span>Analytics</span> Lab
+    </a>
+    <ul class="navbar-nav">
+      <li>
+        <a href="index.html" id="nav-home" data-nav-item="home">Home</a>
+      </li>
+      <li>
+        <a href="index.html#pizzas" id="nav-pizzas" data-nav-item="pizzas">Pizzas</a>
+      </li>
+      <li>
+        <a href="index.html#noodles" id="nav-noodles" data-nav-item="noodles">Noodle Kits</a>
+      </li>
+      <li>
+        <a
+          href="cart.html"
+          class="cart-link"
+          id="nav-cart"
+          data-nav-item="cart"
+          aria-label="View cart"
+        >
+          🛒 Cart
+          <span class="cart-badge" id="cart-badge" aria-live="polite">0</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+
+  <!-- ================================================
+       BREADCRUMB
+       ================================================ -->
+  <nav class="breadcrumb" id="breadcrumb" aria-label="Breadcrumb">
+    <a href="index.html">Home</a> &rsaquo; <span aria-current="page">Shopping Cart</span>
+  </nav>
+
+
+  <!-- ================================================
+       PAGE HEADER
+       ================================================ -->
+  <div class="page-header" id="cart-page-header">
+    <h1>Shopping Cart</h1>
+  </div>
+
+
+  <!-- ================================================
+       CART LAYOUT
+       Two-column grid: items on left, order summary on right.
+       Both columns are populated dynamically by initCartPage() in script.js.
+
+       After rendering:
+
+       LEFT COLUMN — #cart-items-container
+         .cart-items                    — wrapper card
+           .cart-item (one per product) — KEY ANALYTICS ELEMENT
+             data-product-id            — e.g. "pizza_001"
+             data-product-name          — e.g. "Truffle Mushroom Pizza"
+             data-product-category      — e.g. "Artisanal Pizza"
+             data-product-price         — unit price, e.g. "24.99"
+             data-product-sku           — e.g. "PIZ-001"
+             data-product-brand         — "The Analytics Lab"
+             data-quantity              — current quantity, e.g. "2"
+
+           .qty-btn[data-action="decrease-qty"] — decrease qty button
+           .qty-btn[data-action="increase-qty"] — increase qty button
+           .cart-item-remove[data-action="remove-from-cart"] — remove link
+             🔵 ANALYTICS HOOK — remove_from_cart fires on click
+
+       RIGHT COLUMN — #order-summary-container
+         #checkout-btn                  — KEY ANALYTICS ELEMENT
+           data-action="begin-checkout"
+           data-total                   — order total as string, e.g. "53.72"
+           data-subtotal                — subtotal
+           data-tax                     — tax amount
+           data-shipping                — shipping amount
+           data-currency                — "USD"
+           data-item-count              — total quantity
+           🔵 ANALYTICS HOOK — begin_checkout fires on click
+
+       🔵 ANALYTICS HOOK — view_cart
+         Fires inside initCartPage() after items are rendered.
+         GTM Trigger: Page View — URL contains "cart.html"
+         GTM Variables: DOM Element variables on .cart-item data attributes
+                        OR read from localStorage 'analytics_lab_cart'
+       ================================================ -->
+  <div
+    class="cart-container"
+    id="cart-page"
+    data-page-type="cart"
+    role="main"
+  >
+
+    <!-- Cart item rows rendered by initCartPage() -->
+    <div id="cart-items-container" data-container="cart-items">
+      <div style="padding:3rem 2rem;text-align:center;color:var(--text-muted);">
+        <div style="font-size:2rem;margin-bottom:0.5rem;">⏳</div>
+        Loading your cart&hellip;
+      </div>
+    </div>
+
+    <!-- Order summary + checkout button rendered by renderOrderSummary() -->
+    <div id="order-summary-container" data-container="order-summary">
+      <!-- Order summary injected here -->
+    </div>
+
+  </div>
+
+
+  <!-- ================================================
+       FOOTER
+       ================================================ -->
+  <footer id="site-footer">
+    <p>
+      &copy; 2025 The Analytics Lab &nbsp;&middot;&nbsp;
+      Demo site for GA4 &amp; GTM practice &nbsp;&middot;&nbsp;
+      <a href="#">Privacy Policy</a>
+    </p>
+    <p class="footer-demo-note">
+      Not a real store — all products, prices, and transactions are fictional.
+    </p>
+  </footer>
+
+
+  <script src="script.js"></script>
+
+</body>
+</html>

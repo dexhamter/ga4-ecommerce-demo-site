@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Order Confirmed — The Analytics Lab</title>
+  <meta name="description" content="Your order has been confirmed. Thank you for shopping with The Analytics Lab." />
+  <link rel="stylesheet" href="style.css" />
+
+  <!--
+    ╔══════════════════════════════════════════════════════╗
+    ║  GTM HEAD SNIPPET — Paste yours below this comment  ║
+    ╚══════════════════════════════════════════════════════╝
+  -->
+  <!-- Google Tag Manager -->
+  <!-- (paste GTM <head> snippet here) -->
+  <!-- End Google Tag Manager -->
+
+</head>
+
+<!--
+  data-page="success" — used by script.js to call initSuccessPage()
+  and by GTM as a Page Type variable.
+
+  ⭐ This is the PURCHASE confirmation page.
+  GTM should fire a "purchase" event on this page.
+  Recommended GTM trigger: Page View — URL contains "success.html"
+-->
+<body data-page="success">
+
+  <!--
+    ╔══════════════════════════════════════════════════════╗
+    ║  GTM BODY NOSCRIPT — Paste yours below this comment ║
+    ╚══════════════════════════════════════════════════════╝
+  -->
+  <!-- Google Tag Manager (noscript) -->
+  <!-- (paste GTM noscript <noscript> snippet here) -->
+  <!-- End Google Tag Manager (noscript) -->
+
+
+  <!-- ================================================
+       NAVBAR (minimal — no shop links on success page)
+       ================================================ -->
+  <nav class="navbar" id="main-nav" data-component="navbar">
+    <a href="index.html" class="navbar-brand" id="nav-logo" data-nav-item="logo">
+      🧪 The <span>Analytics</span> Lab
+    </a>
+    <ul class="navbar-nav">
+      <li>
+        <a href="index.html" id="nav-home" data-nav-item="home">Continue Shopping</a>
+      </li>
+      <li>
+        <!-- Cart count will show 0 after purchase (cart is cleared by initSuccessPage) -->
+        <a
+          href="cart.html"
+          class="cart-link"
+          id="nav-cart"
+          data-nav-item="cart"
+          aria-label="View cart"
+        >
+          🛒 Cart
+          <span class="cart-badge" id="cart-badge" aria-live="polite">0</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+
+  <!-- ================================================
+       SUCCESS PAGE CONTENT
+
+       This is the PURCHASE CONFIRMATION page.
+       All data is injected by initSuccessPage() in script.js.
+
+       STATIC ELEMENTS (always present, set by JS):
+         #transaction-id
+           → Displays the generated transaction ID (e.g. "TXN-LK4A9B-XYZ12")
+           → data-transaction-id attribute set by script.js
+           → 🔵 GTM DOM Variable target for transaction_id
+
+       DYNAMIC CONTAINER (populated by initSuccessPage()):
+         #success-content
+           data-transaction-id  — transaction ID string
+           data-revenue         — order total, e.g. "53.72"
+           data-subtotal        — subtotal before tax/shipping
+           data-tax             — tax amount
+           data-shipping        — shipping cost
+           data-currency        — "USD"
+
+         #order-confirmation (nested inside #success-content)
+           same data attributes as #success-content
+           → 🔵 KEY GTM TARGET for purchase event parameters
+
+         Each .success-item (one per line item):
+           data-product-id, data-product-name, data-product-price,
+           data-product-category, data-product-sku, data-product-brand,
+           data-quantity
+           → 🔵 Used for GA4 items[] array in the purchase event
+
+         #success-total-amount
+           data-total="53.72"
+           → Alternative GTM target for the total value
+
+       JAVASCRIPT GLOBAL (set by initSuccessPage()):
+         window.lastOrder = {
+           transactionId,  // e.g. "TXN-LK4A9B-XYZ12"
+           items,          // array of line-item objects
+           total,          // e.g. "53.72"
+           subtotal,       // e.g. "47.98"
+           tax,            // e.g. "3.84"
+           shipping,       // e.g. "0.00" or "4.99"
+           currency        // "USD"
+         }
+         → 🔵 Use in GTM Custom JavaScript Variable: function(){ return window.lastOrder.transactionId; }
+
+       🔵 ANALYTICS HOOK — purchase  (⭐ MOST CRITICAL EVENT)
+         Fire after initSuccessPage() renders the confirmation.
+         GTM Trigger:   Page View — URL contains "success.html"
+         GTM Tag:       GA4 Event — event_name: "purchase"
+         GTM Variables: DOM Element on #order-confirmation [data-revenue]
+                        Custom JS: function(){ return window.lastOrder.transactionId; }
+                        Custom JS: function(){ return window.lastOrder.items; }
+       ================================================ -->
+  <div class="success-wrapper" role="main">
+    <div class="success-container" id="success-page" data-page-type="purchase-confirmation">
+
+      <!-- Confirmation icon -->
+      <div class="success-icon-wrap" id="success-icon" aria-hidden="true">✅</div>
+
+      <!-- Headline -->
+      <h1>Order Confirmed!</h1>
+      <p class="subtitle">
+        Thank you for your order. Your artisanal treats are on their way! 🍕🍜
+      </p>
+
+      <!--
+        TRANSACTION ID — KEY GTM ELEMENT
+        Populated and given data-transaction-id attribute by initSuccessPage().
+        GTM DOM Element Variable:
+          Element ID: "transaction-id"
+          Attribute name: "data-transaction-id"
+      -->
+      <div
+        class="transaction-id-box"
+        id="transaction-id"
+        data-transaction-id=""
+        aria-label="Transaction ID"
+      >
+        Generating&hellip;
+      </div>
+      <p class="transaction-label">Save this transaction ID for your records</p>
+
+      <!--
+        DYNAMIC CONTENT CONTAINER
+        initSuccessPage() injects the order summary card and actions here.
+        After render, this element has ALL purchase data-attributes for GTM.
+      -->
+      <div
+        id="success-content"
+        data-transaction-id=""
+        data-revenue=""
+        data-subtotal=""
+        data-tax=""
+        data-shipping=""
+        data-currency="USD"
+        data-container="purchase-summary"
+      >
+        <!-- Placeholder while JS renders -->
+        <div style="padding:2rem;color:var(--text-muted);text-align:center;">
+          <div style="font-size:1.5rem;margin-bottom:0.5rem;">⏳</div>
+          Loading order details&hellip;
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ================================================
+       FOOTER
+       ================================================ -->
+  <footer id="site-footer">
+    <p>
+      &copy; 2025 The Analytics Lab &nbsp;&middot;&nbsp;
+      Demo site for GA4 &amp; GTM practice &nbsp;&middot;&nbsp;
+      <a href="#">Privacy Policy</a>
+    </p>
+    <p class="footer-demo-note">
+      Not a real store — all products, prices, and transactions are fictional.
+    </p>
+  </footer>
+
+
+  <script src="script.js"></script>
+
+</body>
+</html>
