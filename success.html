@@ -1,24 +1,37 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Order Confirmed — The Analytics Lab</title>
-  <meta name="description" content="Your order has been confirmed. Thank you for shopping with The Analytics Lab." />
-  <link rel="stylesheet" href="style.css" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Order Confirmed — The Analytics Lab</title>
+    <meta
+      name="description"
+      content="Your order has been confirmed. Thank you for shopping with The Analytics Lab."
+    />
+    <link rel="stylesheet" href="style.css" />
 
-  <!--
+    <!--
     ╔══════════════════════════════════════════════════════╗
     ║  GTM HEAD SNIPPET — Paste yours below this comment  ║
     ╚══════════════════════════════════════════════════════╝
   -->
-  <!-- Google Tag Manager -->
-  <!-- (paste GTM <head> snippet here) -->
-  <!-- End Google Tag Manager -->
+    <!-- Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-K4KXX4N2");
+    </script>
+    <!-- End Google Tag Manager -->
+  </head>
 
-</head>
-
-<!--
+  <!--
   data-page="success" — used by script.js to call initSuccessPage()
   and by GTM as a Page Type variable.
 
@@ -26,47 +39,58 @@
   GTM should fire a "purchase" event on this page.
   Recommended GTM trigger: Page View — URL contains "success.html"
 -->
-<body data-page="success">
-
-  <!--
+  <body data-page="success">
+    <!--
     ╔══════════════════════════════════════════════════════╗
     ║  GTM BODY NOSCRIPT — Paste yours below this comment ║
     ╚══════════════════════════════════════════════════════╝
   -->
-  <!-- Google Tag Manager (noscript) -->
-  <!-- (paste GTM noscript <noscript> snippet here) -->
-  <!-- End Google Tag Manager (noscript) -->
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-K4KXX4N2"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
-
-  <!-- ================================================
+    <!-- ================================================
        NAVBAR (minimal — no shop links on success page)
        ================================================ -->
-  <nav class="navbar" id="main-nav" data-component="navbar">
-    <a href="index.html" class="navbar-brand" id="nav-logo" data-nav-item="logo">
-      🧪 The <span>Analytics</span> Lab
-    </a>
-    <ul class="navbar-nav">
-      <li>
-        <a href="index.html" id="nav-home" data-nav-item="home">Continue Shopping</a>
-      </li>
-      <li>
-        <!-- Cart count will show 0 after purchase (cart is cleared by initSuccessPage) -->
-        <a
-          href="cart.html"
-          class="cart-link"
-          id="nav-cart"
-          data-nav-item="cart"
-          aria-label="View cart"
-        >
-          🛒 Cart
-          <span class="cart-badge" id="cart-badge" aria-live="polite">0</span>
-        </a>
-      </li>
-    </ul>
-  </nav>
+    <nav class="navbar" id="main-nav" data-component="navbar">
+      <a
+        href="index.html"
+        class="navbar-brand"
+        id="nav-logo"
+        data-nav-item="logo"
+      >
+        🧪 The <span>Analytics</span> Lab
+      </a>
+      <ul class="navbar-nav">
+        <li>
+          <a href="index.html" id="nav-home" data-nav-item="home"
+            >Continue Shopping</a
+          >
+        </li>
+        <li>
+          <!-- Cart count will show 0 after purchase (cart is cleared by initSuccessPage) -->
+          <a
+            href="cart.html"
+            class="cart-link"
+            id="nav-cart"
+            data-nav-item="cart"
+            aria-label="View cart"
+          >
+            🛒 Cart
+            <span class="cart-badge" id="cart-badge" aria-live="polite">0</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
 
-
-  <!-- ================================================
+    <!-- ================================================
        SUCCESS PAGE CONTENT
 
        This is the PURCHASE CONFIRMATION page.
@@ -121,77 +145,82 @@
                         Custom JS: function(){ return window.lastOrder.transactionId; }
                         Custom JS: function(){ return window.lastOrder.items; }
        ================================================ -->
-  <div class="success-wrapper" role="main">
-    <div class="success-container" id="success-page" data-page-type="purchase-confirmation">
+    <div class="success-wrapper" role="main">
+      <div
+        class="success-container"
+        id="success-page"
+        data-page-type="purchase-confirmation"
+      >
+        <!-- Confirmation icon -->
+        <div class="success-icon-wrap" id="success-icon" aria-hidden="true">
+          ✅
+        </div>
 
-      <!-- Confirmation icon -->
-      <div class="success-icon-wrap" id="success-icon" aria-hidden="true">✅</div>
+        <!-- Headline -->
+        <h1>Order Confirmed!</h1>
+        <p class="subtitle">
+          Thank you for your order. Your artisanal treats are on their way! 🍕🍜
+        </p>
 
-      <!-- Headline -->
-      <h1>Order Confirmed!</h1>
-      <p class="subtitle">
-        Thank you for your order. Your artisanal treats are on their way! 🍕🍜
-      </p>
-
-      <!--
+        <!--
         TRANSACTION ID — KEY GTM ELEMENT
         Populated and given data-transaction-id attribute by initSuccessPage().
         GTM DOM Element Variable:
           Element ID: "transaction-id"
           Attribute name: "data-transaction-id"
       -->
-      <div
-        class="transaction-id-box"
-        id="transaction-id"
-        data-transaction-id=""
-        aria-label="Transaction ID"
-      >
-        Generating&hellip;
-      </div>
-      <p class="transaction-label">Save this transaction ID for your records</p>
+        <div
+          class="transaction-id-box"
+          id="transaction-id"
+          data-transaction-id=""
+          aria-label="Transaction ID"
+        >
+          Generating&hellip;
+        </div>
+        <p class="transaction-label">
+          Save this transaction ID for your records
+        </p>
 
-      <!--
+        <!--
         DYNAMIC CONTENT CONTAINER
         initSuccessPage() injects the order summary card and actions here.
         After render, this element has ALL purchase data-attributes for GTM.
       -->
-      <div
-        id="success-content"
-        data-transaction-id=""
-        data-revenue=""
-        data-subtotal=""
-        data-tax=""
-        data-shipping=""
-        data-currency="USD"
-        data-container="purchase-summary"
-      >
-        <!-- Placeholder while JS renders -->
-        <div style="padding:2rem;color:var(--text-muted);text-align:center;">
-          <div style="font-size:1.5rem;margin-bottom:0.5rem;">⏳</div>
-          Loading order details&hellip;
+        <div
+          id="success-content"
+          data-transaction-id=""
+          data-revenue=""
+          data-subtotal=""
+          data-tax=""
+          data-shipping=""
+          data-currency="USD"
+          data-container="purchase-summary"
+        >
+          <!-- Placeholder while JS renders -->
+          <div
+            style="padding: 2rem; color: var(--text-muted); text-align: center"
+          >
+            <div style="font-size: 1.5rem; margin-bottom: 0.5rem">⏳</div>
+            Loading order details&hellip;
+          </div>
         </div>
       </div>
-
     </div>
-  </div>
 
-
-  <!-- ================================================
+    <!-- ================================================
        FOOTER
        ================================================ -->
-  <footer id="site-footer">
-    <p>
-      &copy; 2025 The Analytics Lab &nbsp;&middot;&nbsp;
-      Demo site for GA4 &amp; GTM practice &nbsp;&middot;&nbsp;
-      <a href="#">Privacy Policy</a>
-    </p>
-    <p class="footer-demo-note">
-      Not a real store — all products, prices, and transactions are fictional.
-    </p>
-  </footer>
+    <footer id="site-footer">
+      <p>
+        &copy; 2025 The Analytics Lab &nbsp;&middot;&nbsp; Demo site for GA4
+        &amp; GTM practice &nbsp;&middot;&nbsp;
+        <a href="#">Privacy Policy</a>
+      </p>
+      <p class="footer-demo-note">
+        Not a real store — all products, prices, and transactions are fictional.
+      </p>
+    </footer>
 
-
-  <script src="script.js"></script>
-
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>

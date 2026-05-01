@@ -1,93 +1,118 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!--
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--
     <title> is updated dynamically by initProductPage() in script.js
     to match the product name, e.g. "Truffle Mushroom Pizza — The Analytics Lab"
   -->
-  <title>Product — The Analytics Lab</title>
-  <meta name="description" content="Product detail page for The Analytics Lab demo store." />
-  <link rel="stylesheet" href="style.css" />
+    <title>Product — The Analytics Lab</title>
+    <meta
+      name="description"
+      content="Product detail page for The Analytics Lab demo store."
+    />
+    <link rel="stylesheet" href="style.css" />
 
-  <!--
+    <!--
     ╔══════════════════════════════════════════════════════╗
     ║  GTM HEAD SNIPPET — Paste yours below this comment  ║
     ╚══════════════════════════════════════════════════════╝
   -->
-  <!-- Google Tag Manager -->
-  <!-- (paste GTM <head> snippet here) -->
-  <!-- End Google Tag Manager -->
+    <!-- Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-K4KXX4N2");
+    </script>
+    <!-- End Google Tag Manager -->
+  </head>
 
-</head>
-
-<!--
+  <!--
   data-page="product" — used by script.js to call initProductPage()
   and by GTM as a Page Type variable.
   Product ID is in the URL: product.html?id=pizza_001
 -->
-<body data-page="product">
-
-  <!--
+  <body data-page="product">
+    <!--
     ╔══════════════════════════════════════════════════════╗
     ║  GTM BODY NOSCRIPT — Paste yours below this comment ║
     ╚══════════════════════════════════════════════════════╝
   -->
-  <!-- Google Tag Manager (noscript) -->
-  <!-- (paste GTM noscript <noscript> snippet here) -->
-  <!-- End Google Tag Manager (noscript) -->
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-K4KXX4N2"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
-
-  <!-- ================================================
+    <!-- ================================================
        NAVBAR (same across all pages)
        ================================================ -->
-  <nav class="navbar" id="main-nav" data-component="navbar">
-    <a href="index.html" class="navbar-brand" id="nav-logo" data-nav-item="logo">
-      🧪 The <span>Analytics</span> Lab
-    </a>
-    <ul class="navbar-nav">
-      <li>
-        <a href="index.html" id="nav-home" data-nav-item="home">Home</a>
-      </li>
-      <li>
-        <a href="index.html#pizzas" id="nav-pizzas" data-nav-item="pizzas">Pizzas</a>
-      </li>
-      <li>
-        <a href="index.html#noodles" id="nav-noodles" data-nav-item="noodles">Noodle Kits</a>
-      </li>
-      <li>
-        <a
-          href="cart.html"
-          class="cart-link"
-          id="nav-cart"
-          data-nav-item="cart"
-          aria-label="View cart"
-        >
-          🛒 Cart
-          <span class="cart-badge" id="cart-badge" aria-live="polite">0</span>
-        </a>
-      </li>
-    </ul>
-  </nav>
+    <nav class="navbar" id="main-nav" data-component="navbar">
+      <a
+        href="index.html"
+        class="navbar-brand"
+        id="nav-logo"
+        data-nav-item="logo"
+      >
+        🧪 The <span>Analytics</span> Lab
+      </a>
+      <ul class="navbar-nav">
+        <li>
+          <a href="index.html" id="nav-home" data-nav-item="home">Home</a>
+        </li>
+        <li>
+          <a href="index.html#pizzas" id="nav-pizzas" data-nav-item="pizzas"
+            >Pizzas</a
+          >
+        </li>
+        <li>
+          <a href="index.html#noodles" id="nav-noodles" data-nav-item="noodles"
+            >Noodle Kits</a
+          >
+        </li>
+        <li>
+          <a
+            href="cart.html"
+            class="cart-link"
+            id="nav-cart"
+            data-nav-item="cart"
+            aria-label="View cart"
+          >
+            🛒 Cart
+            <span class="cart-badge" id="cart-badge" aria-live="polite">0</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
 
-
-  <!-- ================================================
+    <!-- ================================================
        BREADCRUMB
        Text and href updated dynamically by initProductPage():
          #breadcrumb-category → product's category name + correct anchor
          #breadcrumb-product  → product name
        ================================================ -->
-  <nav class="breadcrumb" id="breadcrumb" aria-label="Breadcrumb">
-    <a href="index.html" id="breadcrumb-home">Home</a>
-    &rsaquo;
-    <a href="index.html#pizzas" id="breadcrumb-category">Products</a>
-    &rsaquo;
-    <span id="breadcrumb-product" aria-current="page">Loading&hellip;</span>
-  </nav>
+    <nav class="breadcrumb" id="breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html" id="breadcrumb-home">Home</a>
+      &rsaquo;
+      <a href="index.html#pizzas" id="breadcrumb-category">Products</a>
+      &rsaquo;
+      <span id="breadcrumb-product" aria-current="page">Loading&hellip;</span>
+    </nav>
 
-
-  <!-- ================================================
+    <!-- ================================================
        PRODUCT DETAIL CONTAINER
        Populated dynamically by initProductPage() in script.js.
 
@@ -126,19 +151,18 @@
          GTM Trigger: Click — All Elements — Element ID equals "add-to-cart-btn"
          OR Custom Event trigger on the console log event name.
        ================================================ -->
-  <div id="product-detail-container" data-container="product-detail">
-    <!-- Placeholder shown while JS initialises -->
-    <div
-      style="text-align:center;padding:5rem 2rem;color:var(--text-muted);"
-      id="product-loading"
-    >
-      <div style="font-size:2rem;margin-bottom:0.75rem;">⏳</div>
-      Loading product&hellip;
+    <div id="product-detail-container" data-container="product-detail">
+      <!-- Placeholder shown while JS initialises -->
+      <div
+        style="text-align: center; padding: 5rem 2rem; color: var(--text-muted)"
+        id="product-loading"
+      >
+        <div style="font-size: 2rem; margin-bottom: 0.75rem">⏳</div>
+        Loading product&hellip;
+      </div>
     </div>
-  </div>
 
-
-  <!-- ================================================
+    <!-- ================================================
        RELATED PRODUCTS
        Populated by the inline <script> below.
        Each card gets the same data-product-* attributes
@@ -147,70 +171,73 @@
        🔵 ANALYTICS HOOK — select_item (optional)
        Fire when a related product card is clicked.
        ================================================ -->
-  <section
-    class="section"
-    id="related-products"
-    data-section="related-products"
-    style="border-top: 1px solid var(--border);"
-    aria-labelledby="related-heading"
-  >
-    <div class="section-header">
-      <div class="category-label">You Might Also Like</div>
-      <h2 id="related-heading">More From Our Kitchen</h2>
-    </div>
-    <div
-      class="product-grid"
-      id="related-grid"
-      data-list-name="Related Products"
-      data-list-id="related"
+    <section
+      class="section"
+      id="related-products"
+      data-section="related-products"
+      style="border-top: 1px solid var(--border)"
+      aria-labelledby="related-heading"
     >
-      <!-- Injected by the inline script below after script.js loads -->
-    </div>
-  </section>
+      <div class="section-header">
+        <div class="category-label">You Might Also Like</div>
+        <h2 id="related-heading">More From Our Kitchen</h2>
+      </div>
+      <div
+        class="product-grid"
+        id="related-grid"
+        data-list-name="Related Products"
+        data-list-id="related"
+      >
+        <!-- Injected by the inline script below after script.js loads -->
+      </div>
+    </section>
 
-
-  <!-- ================================================
+    <!-- ================================================
        FOOTER
        ================================================ -->
-  <footer id="site-footer">
-    <p>
-      &copy; 2025 The Analytics Lab &nbsp;&middot;&nbsp;
-      Demo site for GA4 &amp; GTM practice &nbsp;&middot;&nbsp;
-      <a href="#">Privacy Policy</a>
-    </p>
-    <p class="footer-demo-note">
-      Not a real store — all products and transactions are fictional.
-    </p>
-  </footer>
+    <footer id="site-footer">
+      <p>
+        &copy; 2025 The Analytics Lab &nbsp;&middot;&nbsp; Demo site for GA4
+        &amp; GTM practice &nbsp;&middot;&nbsp;
+        <a href="#">Privacy Policy</a>
+      </p>
+      <p class="footer-demo-note">
+        Not a real store — all products and transactions are fictional.
+      </p>
+    </footer>
 
-
-  <!-- ================================================
+    <!-- ================================================
        SCRIPTS
        script.js is loaded first; the inline script below
        runs after, and has access to PRODUCTS, formatPrice, etc.
        ================================================ -->
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 
-  <script>
-    /**
-     * Populate the Related Products grid.
-     * Shows up to 3 products from the catalog that are NOT the current product.
-     * Runs after script.js has loaded (PRODUCTS array is available).
-     */
-    (function renderRelatedProducts() {
-      const currentId  = getProductIdFromURL();
-      const relatedGrid = document.getElementById('related-grid');
-      if (!relatedGrid || !currentId) return;
+    <script>
+      /**
+       * Populate the Related Products grid.
+       * Shows up to 3 products from the catalog that are NOT the current product.
+       * Runs after script.js has loaded (PRODUCTS array is available).
+       */
+      (function renderRelatedProducts() {
+        const currentId = getProductIdFromURL();
+        const relatedGrid = document.getElementById("related-grid");
+        if (!relatedGrid || !currentId) return;
 
-      // Pick products that aren't the current one (up to 3)
-      const related = window.PRODUCTS.filter(p => p.id !== currentId).slice(0, 3);
+        // Pick products that aren't the current one (up to 3)
+        const related = window.PRODUCTS.filter((p) => p.id !== currentId).slice(
+          0,
+          3,
+        );
 
-      if (related.length === 0) {
-        relatedGrid.closest('section').style.display = 'none';
-        return;
-      }
+        if (related.length === 0) {
+          relatedGrid.closest("section").style.display = "none";
+          return;
+        }
 
-      relatedGrid.innerHTML = related.map((p, index) => `
+        relatedGrid.innerHTML = related
+          .map(
+            (p, index) => `
         <article
           class="product-card"
           id="related-card-${p.id}"
@@ -261,9 +288,10 @@
             </div>
           </div>
         </article>
-      `).join('');
-    })();
-  </script>
-
-</body>
+      `,
+          )
+          .join("");
+      })();
+    </script>
+  </body>
 </html>

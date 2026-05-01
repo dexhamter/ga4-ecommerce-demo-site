@@ -1,40 +1,58 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Analytics Lab — Artisanal Pizzas & Gourmet Noodle Kits</title>
-  <meta name="description" content="Shop curated artisanal pizzas and gourmet noodle kits from The Analytics Lab. A demo e-commerce store for GA4 and GTM tracking practice." />
-  <link rel="stylesheet" href="style.css" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Analytics Lab — Artisanal Pizzas & Gourmet Noodle Kits</title>
+    <meta
+      name="description"
+      content="Shop curated artisanal pizzas and gourmet noodle kits from The Analytics Lab. A demo e-commerce store for GA4 and GTM tracking practice."
+    />
+    <link rel="stylesheet" href="style.css" />
 
-  <!--
+    <!--
     ╔══════════════════════════════════════════════════════╗
     ║  GTM HEAD SNIPPET — Paste yours below this comment  ║
     ╚══════════════════════════════════════════════════════╝
   -->
-  <!-- Google Tag Manager -->
-  <!-- (paste GTM <head> snippet here) -->
-  <!-- End Google Tag Manager -->
+    <!-- Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-K4KXX4N2");
+    </script>
+    <!-- End Google Tag Manager -->
+  </head>
 
-</head>
-
-<!--
+  <!--
   data-page="home" — used by script.js to call initHomePage()
   and by GTM Page Type variable (DOM Element on <body>, attribute "data-page")
 -->
-<body data-page="home">
-
-  <!--
+  <body data-page="home">
+    <!--
     ╔══════════════════════════════════════════════════════╗
     ║  GTM BODY NOSCRIPT — Paste yours below this comment ║
     ╚══════════════════════════════════════════════════════╝
   -->
-  <!-- Google Tag Manager (noscript) -->
-  <!-- (paste GTM noscript <noscript> snippet here) -->
-  <!-- End Google Tag Manager (noscript) -->
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-K4KXX4N2"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
-
-  <!-- ================================================
+    <!-- ================================================
        NAVBAR
        Analytics targets:
          #nav-logo          — brand/logo click
@@ -44,87 +62,90 @@
          #nav-cart          — cart button     [data-nav-item="cart"]
          #cart-badge        — live item count (updated by updateCartBadge())
        ================================================ -->
-  <nav class="navbar" id="main-nav" data-component="navbar">
-    <a href="index.html" class="navbar-brand" id="nav-logo" data-nav-item="logo">
-      🧪 The <span>Analytics</span> Lab
-    </a>
+    <nav class="navbar" id="main-nav" data-component="navbar">
+      <a
+        href="index.html"
+        class="navbar-brand"
+        id="nav-logo"
+        data-nav-item="logo"
+      >
+        🧪 The <span>Analytics</span> Lab
+      </a>
 
-    <ul class="navbar-nav">
-      <li>
-        <a href="index.html" id="nav-home" data-nav-item="home">Home</a>
-      </li>
-      <li>
-        <a href="#pizzas" id="nav-pizzas" data-nav-item="pizzas">Pizzas</a>
-      </li>
-      <li>
-        <a href="#noodles" id="nav-noodles" data-nav-item="noodles">Noodle Kits</a>
-      </li>
-      <li>
-        <!-- Cart link — data-nav-item="cart" + live badge -->
-        <a
-          href="cart.html"
-          class="cart-link"
-          id="nav-cart"
-          data-nav-item="cart"
-          aria-label="View cart"
-        >
-          🛒 Cart
-          <span class="cart-badge" id="cart-badge" aria-live="polite">0</span>
-        </a>
-      </li>
-    </ul>
-  </nav>
+      <ul class="navbar-nav">
+        <li>
+          <a href="index.html" id="nav-home" data-nav-item="home">Home</a>
+        </li>
+        <li>
+          <a href="#pizzas" id="nav-pizzas" data-nav-item="pizzas">Pizzas</a>
+        </li>
+        <li>
+          <a href="#noodles" id="nav-noodles" data-nav-item="noodles"
+            >Noodle Kits</a
+          >
+        </li>
+        <li>
+          <!-- Cart link — data-nav-item="cart" + live badge -->
+          <a
+            href="cart.html"
+            class="cart-link"
+            id="nav-cart"
+            data-nav-item="cart"
+            aria-label="View cart"
+          >
+            🛒 Cart
+            <span class="cart-badge" id="cart-badge" aria-live="polite">0</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
 
-
-  <!-- ================================================
+    <!-- ================================================
        HERO SECTION
        Analytics targets:
          #hero-cta           — primary CTA [data-action="hero-cta"]
          #hero-cta-secondary — secondary CTA [data-action="hero-cta-secondary"]
        ================================================ -->
-  <section class="hero" id="hero" data-section="hero">
-    <h1>Artisanal Food,<br /><em>Crafted With Intent</em></h1>
-    <p>
-      Slow-fermented sourdough pizzas and restaurant-grade noodle kits,
-      curated for food lovers who refuse to compromise.
-    </p>
-    <div class="hero-actions">
-      <a
-        href="#pizzas"
-        class="btn btn-primary"
-        id="hero-cta"
-        data-action="hero-cta"
-        data-destination="pizzas-section"
-      >
-        Shop Pizzas
-      </a>
-      <a
-        href="#noodles"
-        class="btn btn-outline"
-        id="hero-cta-secondary"
-        data-action="hero-cta-secondary"
-        data-destination="noodles-section"
-      >
-        Noodle Kits
-      </a>
-    </div>
-  </section>
-
-
-  <!-- ================================================
-       TRUST BADGES
-       ================================================ -->
-  <div class="trust-badges" id="trust-badges" data-section="trust-badges">
-    <div class="trust-badge">🚚 Free shipping over $50</div>
-    <div class="trust-badge">🌿 Sustainably sourced ingredients</div>
-    <div class="trust-badge">⭐ 4.9/5 from 2,400+ orders</div>
-    <div class="trust-badge">🔄 30-day hassle-free returns</div>
-  </div>
-
-
-  <main id="main-content">
+    <section class="hero" id="hero" data-section="hero">
+      <h1>Artisanal Food,<br /><em>Crafted With Intent</em></h1>
+      <p>
+        Slow-fermented sourdough pizzas and restaurant-grade noodle kits,
+        curated for food lovers who refuse to compromise.
+      </p>
+      <div class="hero-actions">
+        <a
+          href="#pizzas"
+          class="btn btn-primary"
+          id="hero-cta"
+          data-action="hero-cta"
+          data-destination="pizzas-section"
+        >
+          Shop Pizzas
+        </a>
+        <a
+          href="#noodles"
+          class="btn btn-outline"
+          id="hero-cta-secondary"
+          data-action="hero-cta-secondary"
+          data-destination="noodles-section"
+        >
+          Noodle Kits
+        </a>
+      </div>
+    </section>
 
     <!-- ================================================
+       TRUST BADGES
+       ================================================ -->
+    <div class="trust-badges" id="trust-badges" data-section="trust-badges">
+      <div class="trust-badge">🚚 Free shipping over $50</div>
+      <div class="trust-badge">🌿 Sustainably sourced ingredients</div>
+      <div class="trust-badge">⭐ 4.9/5 from 2,400+ orders</div>
+      <div class="trust-badge">🔄 30-day hassle-free returns</div>
+    </div>
+
+    <main id="main-content">
+      <!-- ================================================
          ARTISANAL PIZZAS SECTION
          Analytics targets:
            #pizzas              — section anchor [data-section="pizza-listing"]
@@ -139,19 +160,22 @@
          Set up a GTM trigger (Page View or Element Visibility) to fire
          view_item_list when #pizza-grid is visible.
          ================================================ -->
-    <section
-      class="section"
-      id="pizzas"
-      data-section="pizza-listing"
-      aria-labelledby="pizzas-heading"
-    >
-      <div class="section-header">
-        <div class="category-label">Artisanal Pizzas</div>
-        <h2 id="pizzas-heading">Wood-Fired &amp; Hand-Crafted</h2>
-        <p>48-hour slow-fermented sourdough dough, premium toppings, authentic Italian technique.</p>
-      </div>
+      <section
+        class="section"
+        id="pizzas"
+        data-section="pizza-listing"
+        aria-labelledby="pizzas-heading"
+      >
+        <div class="section-header">
+          <div class="category-label">Artisanal Pizzas</div>
+          <h2 id="pizzas-heading">Wood-Fired &amp; Hand-Crafted</h2>
+          <p>
+            48-hour slow-fermented sourdough dough, premium toppings, authentic
+            Italian technique.
+          </p>
+        </div>
 
-      <!--
+        <!--
         Product cards are injected here by:
           script.js  →  initHomePage()  →  renderProductGrid('pizza-grid', ...)
 
@@ -160,19 +184,18 @@
           data-product-price, data-product-sku, data-product-brand,
           data-product-variant, data-list-name, data-list-position
       -->
-      <div
-        class="product-grid"
-        id="pizza-grid"
-        data-list-name="Pizza Collection"
-        data-list-id="pizza_category"
-        aria-label="Artisanal Pizza products"
-      >
-        <!-- Products injected by script.js -->
-      </div>
-    </section>
+        <div
+          class="product-grid"
+          id="pizza-grid"
+          data-list-name="Pizza Collection"
+          data-list-id="pizza_category"
+          aria-label="Artisanal Pizza products"
+        >
+          <!-- Products injected by script.js -->
+        </div>
+      </section>
 
-
-    <!-- ================================================
+      <!-- ================================================
          GOURMET NOODLE KITS SECTION
          Analytics targets:
            #noodles             — section anchor [data-section="noodle-listing"]
@@ -183,59 +206,58 @@
          🔵 ANALYTICS HOOK — view_item_list (second list)
          Set up a separate GTM trigger or use one trigger for both grids.
          ================================================ -->
-    <section
-      class="section-full"
-      id="noodles"
-      data-section="noodle-listing"
-      aria-labelledby="noodles-heading"
-    >
-      <div class="section-inner">
-        <div class="section-header">
-          <div class="category-label">Gourmet Noodle Kits</div>
-          <h2 id="noodles-heading">Restaurant Noodles at Home</h2>
-          <p>Everything you need to recreate authentic Asian noodle dishes in under 20 minutes.</p>
-        </div>
+      <section
+        class="section-full"
+        id="noodles"
+        data-section="noodle-listing"
+        aria-labelledby="noodles-heading"
+      >
+        <div class="section-inner">
+          <div class="section-header">
+            <div class="category-label">Gourmet Noodle Kits</div>
+            <h2 id="noodles-heading">Restaurant Noodles at Home</h2>
+            <p>
+              Everything you need to recreate authentic Asian noodle dishes in
+              under 20 minutes.
+            </p>
+          </div>
 
-        <!--
+          <!--
           Product cards injected by:
             script.js  →  initHomePage()  →  renderProductGrid('noodle-grid', ...)
         -->
-        <div
-          class="product-grid"
-          id="noodle-grid"
-          data-list-name="Noodle Kit Collection"
-          data-list-id="noodle_category"
-          aria-label="Gourmet Noodle Kit products"
-        >
-          <!-- Products injected by script.js -->
+          <div
+            class="product-grid"
+            id="noodle-grid"
+            data-list-name="Noodle Kit Collection"
+            data-list-id="noodle_category"
+            aria-label="Gourmet Noodle Kit products"
+          >
+            <!-- Products injected by script.js -->
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </main>
 
-  </main>
-
-
-  <!-- ================================================
+    <!-- ================================================
        FOOTER
        ================================================ -->
-  <footer id="site-footer">
-    <p>
-      &copy; 2025 The Analytics Lab &nbsp;&middot;&nbsp;
-      Demo site for GA4 &amp; GTM tracking practice &nbsp;&middot;&nbsp;
-      <a href="#">Privacy Policy</a>
-    </p>
-    <p class="footer-demo-note">
-      Not a real store — all products, prices, and transactions are fictional.
-    </p>
-  </footer>
+    <footer id="site-footer">
+      <p>
+        &copy; 2025 The Analytics Lab &nbsp;&middot;&nbsp; Demo site for GA4
+        &amp; GTM tracking practice &nbsp;&middot;&nbsp;
+        <a href="#">Privacy Policy</a>
+      </p>
+      <p class="footer-demo-note">
+        Not a real store — all products, prices, and transactions are fictional.
+      </p>
+    </footer>
 
-
-  <!-- ================================================
+    <!-- ================================================
        SCRIPTS
        script.js is loaded last so it can find all DOM
        elements. Page init is triggered by DOMContentLoaded.
        ================================================ -->
-  <script src="script.js"></script>
-
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>
